@@ -3,7 +3,6 @@ package com.savr.mvppattern.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.savr.mvppattern.R
 import com.savr.mvppattern.adapter.PersonAdapter
@@ -13,8 +12,8 @@ import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
 
-    internal lateinit var db:DBHelper
-    var listPerson:ArrayList<Person> = ArrayList()
+    private lateinit var db:DBHelper
+    private var listPerson:ArrayList<Person> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +30,8 @@ class SecondActivity : AppCompatActivity() {
             val person = Person(
                 Integer.parseInt(text_idPerson.text.toString()),
                 text_name.text.toString(),
-                text_email.text.toString())
+                text_email.text.toString(),
+                text_phone.text.toString())
             db.addPerson(person)
             refreshData()
         }
@@ -40,7 +40,8 @@ class SecondActivity : AppCompatActivity() {
             val person = Person(
                 Integer.parseInt(text_idPerson.text.toString()),
                 text_name.text.toString(),
-                text_email.text.toString())
+                text_email.text.toString(),
+                text_phone.text.toString())
             db.updatePerson(person)
             refreshData()
         }
@@ -49,7 +50,8 @@ class SecondActivity : AppCompatActivity() {
             val person = Person(
                 Integer.parseInt(text_idPerson.text.toString()),
                 text_name.text.toString(),
-                text_email.text.toString())
+                text_email.text.toString(),
+                text_phone.text.toString())
             db.deletePerson(person)
             refreshData()
         }
@@ -62,6 +64,9 @@ class SecondActivity : AppCompatActivity() {
                 text_idPerson.text = Editable.Factory.getInstance().newEditable(person.id.toString())
                 text_name.text = Editable.Factory.getInstance().newEditable(person.name)
                 text_email.text = Editable.Factory.getInstance().newEditable(person.email)
+                val phone = if (person.phone==null) ""
+                else person.phone!!
+                text_phone.text = Editable.Factory.getInstance().newEditable(phone)
             }
         })
         (my_recycler.adapter as PersonAdapter).notifyDataSetChanged()

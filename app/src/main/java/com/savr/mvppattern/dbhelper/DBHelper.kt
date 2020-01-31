@@ -1,5 +1,6 @@
 package com.savr.mvppattern.dbhelper
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -10,15 +11,19 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
     companion object {
 
         var DATABASE_NAME = "user_database"
-        private val DATABASE_VERSION = 1
-        private val TABLE_USER = "users"
-        private val COL_USER_ID = "id"
-        private val COL_USER_NAME = "name"
-        private val COL_USER_EMAIL = "email"
+        const val DATABASE_VERSION = 2
+        const val TABLE_USER = "users"
+        const val COL_USER_ID = "id"
+        const val COL_USER_NAME = "name"
+        const val COL_USER_EMAIL = "email"
+        const val COL_USER_PHONE = "phone"
 
-        private val CREATE_TABLE_USER = ("CREATE TABLE $TABLE_USER " +
+        const val CREATE_TABLE_USER = ("CREATE TABLE $TABLE_USER " +
                 "($COL_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COL_USER_NAME TEXT, $COL_USER_EMAIL TEXT)")
+
+        const val DATABASE_ALTER_USER_COL_USER_PHONE = ("ALTER TABLE "
+                + TABLE_USER) + " ADD COLUMN " + COL_USER_PHONE + " string;"
 
     }
 
@@ -27,11 +32,14 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS '$TABLE_USER'")
-        onCreate(db)
+        //execute when migrating
+        if (oldVersion == 1) {
+            db!!.execSQL(DATABASE_ALTER_USER_COL_USER_PHONE)
+        }
     }
 
     val allPerson:List<Person>
+    @SuppressLint("Recycle")
     get() {
         val personList = ArrayList<Person>()
         val selectQuery = "SELECT * FROM $TABLE_USER"
@@ -44,6 +52,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
                 person.id = cursor.getInt(cursor.getColumnIndex(COL_USER_ID))
                 person.name = cursor.getString(cursor.getColumnIndex(COL_USER_NAME))
                 person.email= cursor.getString(cursor.getColumnIndex(COL_USER_EMAIL))
+                person.phone = cursor.getString(cursor.getColumnIndex(COL_USER_PHONE))
                 personList.add(person)
             } while (cursor.moveToNext())
         }
@@ -57,6 +66,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         values.put(COL_USER_ID, person.id)
         values.put(COL_USER_NAME, person.name)
         values.put(COL_USER_EMAIL, person.email)
+        values.put(COL_USER_PHONE, person.phone)
 
         db.insert(TABLE_USER, null, values)
         db.close()
@@ -68,6 +78,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         values.put(COL_USER_ID, person.id)
         values.put(COL_USER_NAME, person.name)
         values.put(COL_USER_EMAIL, person.email)
+        values.put(COL_USER_PHONE, person.phone)
 
         db.update(TABLE_USER, values, "$COL_USER_ID=?", arrayOf(person.id.toString()))
         db.close()

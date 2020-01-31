@@ -1,6 +1,5 @@
 package com.savr.mvppattern.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import com.savr.mvppattern.R
 import com.savr.mvppattern.model.Person
 import kotlinx.android.synthetic.main.person_item.view.*
 
-class PersonAdapter (var datas:List<Person>, private var onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter (private var datas:List<Person>, private var onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(
@@ -19,7 +18,7 @@ class PersonAdapter (var datas:List<Person>, private var onItemClickListener: On
             itemView.text_idPerson.text = person.id.toString()
             itemView.text_emailPerson.text = person.email
             itemView.text_namePerson.text = person.name
-
+            itemView.text_phonePerson.text = person.phone
             itemView.setOnClickListener {
                 onItemClickListener.onItemClick(person)
             }
