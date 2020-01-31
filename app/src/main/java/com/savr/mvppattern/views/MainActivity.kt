@@ -54,5 +54,9 @@ class MainActivity : AppCompatActivity(), MainView {
         recycler.setHasFixedSize(true)
 
         presenter.getData()
+
+        buttonNext.setOnClickListener {
+            startActivity(Intent(applicationContext,SecondActivity::class.java))
+        }
     }
 }
