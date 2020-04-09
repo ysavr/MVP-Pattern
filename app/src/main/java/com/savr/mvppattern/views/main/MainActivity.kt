@@ -1,26 +1,21 @@
-package com.savr.mvppattern.views
+package com.savr.mvppattern.views.main
 
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.savr.mvppattern.R
 import com.savr.mvppattern.adapter.KodePosAdapter
 import com.savr.mvppattern.model.ResponseKodePos
-import com.savr.mvppattern.presenter.MainPresenter
 import com.savr.mvppattern.presenter.MainPresenterImpl
+import com.savr.mvppattern.views.student.StudentActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Math.random
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.pow
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(),
+    MainView {
     private var presenter = MainPresenterImpl(this)
     private var progressDialog:ProgressDialog? = null
     var kodePosList: ArrayList<ResponseKodePos> = ArrayList()
@@ -54,5 +49,9 @@ class MainActivity : AppCompatActivity(), MainView {
         recycler.setHasFixedSize(true)
 
         presenter.getData()
+
+        fab_add.setOnClickListener {
+            startActivity(Intent(this, StudentActivity::class.java))
+        }
     }
 }

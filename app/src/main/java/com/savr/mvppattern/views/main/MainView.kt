@@ -1,4 +1,4 @@
-package com.savr.mvppattern.views
+package com.savr.mvppattern.views.main
 
 import com.savr.mvppattern.model.ResponseKodePos
 

@@ -11,8 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.SecondActivity"></activity>
-        <activity android:name=".views.MainActivity">
+        <activity
+            android:name=".views.student.DetailStudentActivity"
+            android:label="@string/title_activity_detail_student"
+            android:parentActivityName=".views.student.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.savr.mvppattern.views.student.StudentActivity" />
+        </activity>
+        <activity android:name=".views.student.StudentActivity" />
+        <activity android:name=".views.SecondActivity" />
+        <activity android:name=".views.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,7 +1,7 @@
 package com.savr.mvppattern.presenter
 
 import com.savr.mvppattern.data.ApiCall
-import com.savr.mvppattern.views.MainView
+import com.savr.mvppattern.views.main.MainView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
