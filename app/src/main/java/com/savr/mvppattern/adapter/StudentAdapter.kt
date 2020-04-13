@@ -1,12 +1,14 @@
 package com.savr.mvppattern.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.savr.mvppattern.R
 import com.savr.mvppattern.local.entity.StudentEntity
+import com.savr.mvppattern.views.student.DetailStudentActivity
 import kotlinx.android.synthetic.main.item_student.view.*
 
 class StudentAdapter(val studentList : ArrayList<StudentEntity>, val context : Context)
@@ -17,10 +19,6 @@ class StudentAdapter(val studentList : ArrayList<StudentEntity>, val context : C
             itemView.text_view_student_gen.text = studentEntity.gender
             itemView.text_view_student_name.text = studentEntity.name
             itemView.text_view_student_nim.text = studentEntity.nim
-
-            itemView.setOnClickListener {
-
-            }
         }
     }
 
@@ -35,5 +33,10 @@ class StudentAdapter(val studentList : ArrayList<StudentEntity>, val context : C
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(studentList[position])
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, DetailStudentActivity::class.java)
+            intent.putExtra("student_object",studentList[position])
+            it.context.startActivity(intent)
+        }
     }
 }

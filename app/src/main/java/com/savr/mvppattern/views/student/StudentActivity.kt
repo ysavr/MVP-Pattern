@@ -16,9 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_student.*
-import kotlinx.android.synthetic.main.input_dialog.*
 import kotlinx.android.synthetic.main.input_dialog.view.*
 
 class StudentActivity : AppCompatActivity() {
@@ -41,13 +39,13 @@ class StudentActivity : AppCompatActivity() {
             val view = layoutInflater.inflate(R.layout.input_dialog, null)
             dialogBuilder.setView(view)
             dialogBuilder.setTitle("Masukkan data baru")
-            val et_name = view.ed_student_name
-            val et_nim = view.ed_student_id
+            val etName = view.ed_student_name
+            val etNim = view.ed_student_id
             val radioGroupGender = view.radio_group_gender
 
             dialogBuilder.setPositiveButton("Tambahkan"){ _:DialogInterface, _: Int ->
-                val studentName = et_name.text
-                val studentNim = et_nim.text
+                val studentName = etName.text
+                val studentNim = etNim.text
                 var gender: String
                 val selectedRadioButton = radioGroupGender.checkedRadioButtonId
                 Log.v("test", "" + selectedRadioButton)

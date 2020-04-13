@@ -20,8 +20,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.savr.mvppattern.views.student.StudentActivity" />
         </activity>
-        <activity android:name=".views.student.StudentActivity" />
-        <activity android:name=".views.SecondActivity" />
+        <activity
+            android:name=".views.student.StudentActivity"
+            android:label="Student"/>
         <activity android:name=".views.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
