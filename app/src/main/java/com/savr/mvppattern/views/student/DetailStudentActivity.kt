@@ -35,7 +35,7 @@ class DetailStudentActivity : AppCompatActivity() {
 
         textViewName.text = "Nama = ${studentEntity.name}"
         textViewNim.text = "Nim = ${studentEntity.nim}"
-        textViewGender.text = "Jenis Kelamin = ${studentEntity.gender}"
+        textViewGender.text = "Jenis Kelamin = ${studentEntity.kelamin}"
 
         studentDatabase = StudentDatabase.getInstance(this)
     }

@@ -15,6 +15,6 @@ interface StudentDao {
     @Delete
     fun delete(student: StudentEntity)
 
-    @Query("UPDATE students SET name =:studentName, nim =:studentNim, gender =:studentGen WHERE id =:studentId")
+    @Query("UPDATE students SET name =:studentName, nim =:studentNim, kelamin =:studentGen WHERE id =:studentId")
     fun update(studentId: Long, studentName:String, studentNim:String, studentGen:String)
 }

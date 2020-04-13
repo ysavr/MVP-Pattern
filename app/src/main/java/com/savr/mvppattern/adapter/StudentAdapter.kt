@@ -16,7 +16,7 @@ class StudentAdapter(val studentList : ArrayList<StudentEntity>, val context : C
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         fun bind(studentEntity: StudentEntity) {
-            itemView.text_view_student_gen.text = studentEntity.gender
+            itemView.text_view_student_gen.text = studentEntity.kelamin
             itemView.text_view_student_name.text = studentEntity.name
             itemView.text_view_student_nim.text = studentEntity.nim
         }
