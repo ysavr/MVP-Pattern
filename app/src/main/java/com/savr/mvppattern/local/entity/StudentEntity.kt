@@ -12,6 +12,7 @@ import kotlinx.android.parcel.Parcelize
 data class StudentEntity (
     @ColumnInfo(name = "name")var name: String,
     @ColumnInfo(name = "nim")var nim: String,
-    @ColumnInfo(name = "gender")var gender: String,
+    // MIGRATE 1->2
+    @ColumnInfo(name = "kelamin")var kelamin: String,
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Long = 0
 ): Parcelable
